@@ -3,7 +3,9 @@ import type { NextRequest } from 'next/server'
 import { getToken } from "next-auth/jwt"
 
 export async function middleware(request: NextRequest) {
-    const token = await getToken({ req: request });
+    const cookieName = process.env.NODE_ENV === "production" ? "__Secure-next-auth.session-token" : "next-auth.session-token" ;
+
+   const token =  await getToken({req:request , cookieName})
     const { pathname } = request.nextUrl;
     const authRoutes = ["/login", "/register"];
     const protectedRoutes = ["/cart", "/checkout", "profile"];
