@@ -57,7 +57,10 @@ export default function CheckoutPage() {
 
             }
             else {
-                window.location.href = action.callbackUrl as string;
+                const url = new URL(action.callbackUrl as string);
+url.hostname = window.location.hostname; 
+window.location.href = url.toString();
+
 
             }
         } else if (!action.success && action.error && action.message) {
