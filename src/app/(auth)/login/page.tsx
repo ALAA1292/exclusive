@@ -123,7 +123,7 @@ style={{
       <Card className="w-full shadow-xl  border-2 rounded-2xl">
         <CardHeader>
           <CardTitle className="text-center text-xl font-semibold">
-            login To Enclusive
+            login To Exclusive
           </CardTitle>
         </CardHeader>
         <CardContent>
