@@ -20,6 +20,8 @@ import { useRouter } from "next/navigation"
 import { useState, useTransition } from "react"
 import { LoaderCircle } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useCart } from '@/context/CartContext';
+import { useWishlist } from '@/context/WishlistContext';
 
 const formSchema = z.object({
   email: z.email({
@@ -37,6 +39,8 @@ export default function LoginPage() {
   const [resetPass, setResetPass] = useState(false)
   const [email, setEmail] = useState("")
   const [isPending, startTransition] = useTransition()
+ const { getCartDetails } = useCart();
+  const { getWishlistDetails } = useWishlist();
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(formSchema),
@@ -59,6 +63,9 @@ export default function LoginPage() {
             position: "top-center",
           })
           router.push("/")
+          getCartDetails();
+          getWishlistDetails();
+
         } else {
           toast.error(res?.error || "Something went wrong", {
             position: "top-center",

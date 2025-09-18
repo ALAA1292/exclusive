@@ -30,7 +30,7 @@ export default function CheckoutPage() {
         defaultValues: { details: "", city: "", phone: "", cartid: "", paymentMethod: "cash" },
     })
 
-    const { setCartDetails, CartDetails } = useCart();
+    const {getCartDetails, setCartDetails, CartDetails } = useCart();
 
 
     const router = useRouter();
@@ -47,10 +47,12 @@ export default function CheckoutPage() {
         if (action.success && action.message) {
             if (form.getValues("paymentMethod") === 'cash') {
                 setCartDetails(null);
+                getCartDetails()
                 toast.success(action.message || "Payment successful!", { position: "top-center" });
 
                 if (action.callbackUrl) {
                     router.push(action.callbackUrl || "/allorders");
+                    getCartDetails()
                 }
 
             }
