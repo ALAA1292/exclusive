@@ -70,5 +70,4 @@ Check out the live demo of the project here: [View Live Project](https://exclusi
 
 ---
 
-ل
-تحبي أعملها لك؟
+
